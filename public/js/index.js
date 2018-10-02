@@ -6,6 +6,11 @@ window.addEventListener('load', () => {
 
     socket.on('message', (data) => {
         if (data != '') {
+            $log.append('<div class="mui--divider-bottom mui--text-right">' + data + '</div>');
+        }
+    });
+    socket.on('broadcast', (data) => {
+        if (data != '') {
             $log.append('<div class="mui--divider-bottom">' + data + '</div>');
         }
     });
