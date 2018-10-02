@@ -8,7 +8,6 @@ app.use('/', express.static(__dirname + '/public'));
 
 io.on('connection', (socket) => {
     socket.on('message', (data) => {
-        //io.emit('message', data);
         io.to(socket.id).emit('message', data);
         socket.broadcast.emit('broadcast', data);
     });

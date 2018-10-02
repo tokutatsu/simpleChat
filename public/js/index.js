@@ -5,20 +5,18 @@ window.addEventListener('load', () => {
     const $form = $('form');
 
     socket.on('message', (data) => {
-        if (data != '') {
-            $log.append('<div class="mui--divider-bottom mui--text-right">' + data + '</div>');
-        }
+        $log.append('<div class="mui--divider-bottom mui--text-right">' + data + '</div>');
     });
     socket.on('broadcast', (data) => {
-        if (data != '') {
-            $log.append('<div class="mui--divider-bottom">' + data + '</div>');
-        }
+        $log.append('<div class="mui--divider-bottom">' + data + '</div>');
     });
 
     $form.submit((event) => {
         var msg = $inputMessage.val();
         $inputMessage.val('');
-        socket.emit('message', msg);
+        if (msg.replace(/\s/g, '').length > 0) {
+            socket.emit('message', msg);
+        }
         event.preventDefault();
     });
 });
