@@ -5,10 +5,10 @@ window.addEventListener('load', () => {
     const $form = $('form');
 
     socket.on('message', (data) => {
-        $log.append('<div class="mui--divider-bottom mui--text-right">' + data + '</div>');
+        $log.append('<div class="mymessage">' + data + '</div>');
     });
     socket.on('broadcast', (data) => {
-        $log.append('<div class="mui--divider-bottom">' + data + '</div>');
+        $log.append('<div class="message">' + data + '</div>');
     });
 
     $form.submit((event) => {
