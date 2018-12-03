@@ -5,16 +5,16 @@ window.addEventListener('load', () => {
     const $form = $('form');
 
     socket.on('message', (data) => {
-        $log.append('<div class="mymessage">' + data + '</div>');
+        $log.append($('<div/>').text(data).addClass('mymessage'));
     });
     socket.on('broadcast', (data) => {
-        $log.append('<div class="message">' + data + '</div>');
+        $log.append($('<div/>').text(data).addClass('message'));
     });
 
     $form.submit((event) => {
         var msg = $inputMessage.val();
-        $inputMessage.val('');
-        if (msg.replace(/\s/g, '').length > 0) {
+        if ($inputMessage.val().replace(/\s/g, '').length > 0) {
+            $inputMessage.val('');
             socket.emit('message', msg);
         }
         event.preventDefault();
