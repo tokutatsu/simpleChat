@@ -4,7 +4,10 @@ window.addEventListener('load', () => {
     const $log = $('#log');
     const $form = $('form');
 
-    socket.on('message', (data) => {
+    socket.on('log', (data) => {
+        $log.append($('<div/>').text(data).addClass('message'));
+    })
+    socket.on('mymessage', (data) => {
         $log.append($('<div/>').text(data).addClass('mymessage'));
     });
     socket.on('broadcast', (data) => {
