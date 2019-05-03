@@ -2,6 +2,9 @@ var socket = io();
 const $inputMessage = $('#inputMessage');
 const $log = $('#log');
 const $form = $('form');
+const roomId = $('#roomId').text().replace('ルームID:', '');
+
+socket.emit('clientJoin', roomId);
 
 socket.on('log', (data) => {
     $log.append($('<div/>').text(data).addClass('message'));

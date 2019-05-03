@@ -3,18 +3,41 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
-var log = [];
+const bodyParser = require('body-parser');
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(__dirname + '/public'));
 
-io.on('connection', (socket) => {
-    log.forEach((data) => {
-        io.to(socket.id).emit('log', data);
+app.get('/', (req, res) => {
+    res.render('login');
+});
+
+app.post('/login', (req, res, next) => {
+    res.render('index', {
+        name: req.body.name,
+        roomId: req.body.roomId
     });
+});
+
+io.on('connection', (socket) => {
+    let room = '';
+
+    socket.on('clientJoin', (data) => {
+        room = data;
+        socket.join(room);
+    });
+
     socket.on('message', (data) => {
-        log.push(data);
         io.to(socket.id).emit('mymessage', data);
-        socket.broadcast.emit('broadcast', data);
+        socket.broadcast.to(room).emit('broadcast', data);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('切断');
     });
 });
 
