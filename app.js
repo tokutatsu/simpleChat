@@ -4,7 +4,6 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
-var log = [];
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -28,14 +27,11 @@ io.on('connection', (socket) => {
     let room = '';
 
     socket.on('clientJoin', (data) => {
-        room = data.id;
+        room = data;
         socket.join(room);
     });
-    log.forEach((data) => {
-        io.to(socket.id).emit('log', data);
-    });
+
     socket.on('message', (data) => {
-        log.push(data);
         io.to(socket.id).emit('mymessage', data);
         socket.broadcast.to(room).emit('broadcast', data);
     });
