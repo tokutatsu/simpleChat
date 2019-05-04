@@ -6,18 +6,21 @@
     <link href="//cdn.muicss.com/mui-0.9.41/css/mui.min.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.muicss.com/mui-0.9.41/js/mui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-</head>
-
-<body>
-    <form class="mui-form mui--text-center" method="POST" action="http://127.0.0.1:3000/login">
-        <div class="mui-textfield">
-            <div class="mui-divider"></div>
-            <input type="text" placeholder="名前を入力" id="name" name="name">
-            <input type="text" placeholder="idを入力" id="roomId" name="roomId">
+    </head>
+    
+    <body>
+        <div class="mui--text-center">
+            <h1>simpleChat</h1>
+            <form class="mui-form mui--text-center" method="POST" action="http://127.0.0.1:3000/login">
+                <p><input type="text" placeholder="名前を入力" id="name" name="name"></p>
+                <p><input type="text" placeholder="idを入力" id="roomId" name="roomId"></p>
+                <p><button class="mui-btn mui-btn--danger" type="submit">入室</button></p>
+            </form>
+            <font color="red">
+                <div id="log"></div>
+            </font>
         </div>
-        <button class="mui-btn mui-btn--danger" type="submit">入室</button>
-    </form>
-    <div id="log"></div>
-    <script type="text/javascript" src="js/login.js"></script>
-</body>
-</html>
+        <script type="text/javascript" src="js/login.js"></script>
+    </body>
+    
+    </html>
