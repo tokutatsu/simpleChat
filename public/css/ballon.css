@@ -1,5 +1,8 @@
 .log {
+    overflow: hidden;
     padding: 20px;
+    padding-top: 110px;
+    padding-bottom: 54px;
 }
 .mymessage {
     display: table; 

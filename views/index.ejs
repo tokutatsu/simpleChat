@@ -10,20 +10,22 @@
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="css/ballon.css">
     <link rel="stylesheet" type="text/css" href="css/form.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body>
-    <div><%- `こんにちは${name}さん!!` -%></div>
-    <div id="roomId"><%- `ルームID:${roomId}` -%></div>
+    <div class="mui--text-center view">
+        <h2><%- `こんにちは${name}さん!!` -%></h2>
+        <h2 id="roomId"><%- `ルームID:${roomId}` -%></h2>
+        <div class="mui-divider"></div>
+    </div>
     <div id="log" class="log"></div>
     <form class="mui-form mui--text-center">
-        <div class="mui-textfield">
-            <div class="mui-divider"></div>
-            <textarea placeholder="メッセージを入力" id="inputMessage"></textarea>
-        </div>
-        <button class="mui-btn mui-btn--danger" type="submit">送信</button>
+        <div class="mui-divider"></div>
+        <textarea placeholder="メッセージを入力" id="inputMessage"></textarea>
+        <button id="submitButton">送信</button>
     </form>
     <script type="text/javascript" src="js/index.js"></script>
-</body>
-
-</html>
+    </body>
+    
+    </html>

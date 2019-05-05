@@ -16,11 +16,15 @@ app.get('/', (req, res) => {
     res.render('login');
 });
 
-app.post('/login', (req, res, next) => {
+app.get('/index', (req, res) => {
     res.render('index', {
-        name: req.body.name,
-        roomId: req.body.roomId
+        name: req.query.name,
+        roomId: req.query.roomId
     });
+});
+
+app.post('/login', (req, res) => {
+    res.redirect(`/index?name=${req.body.name}&roomId=${req.body.roomId}`);
 });
 
 io.on('connection', (socket) => {
